@@ -14,6 +14,26 @@ class CountPage extends ConsumerWidget {
     final counter = ref.watch(countProvider);
     final counterNotifier = ref.watch(countProvider.notifier);
 
+    ref.listen<int>(countProvider, ((previous, next) {
+      if (next.isEven) {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return const AlertDialog(
+                title: Text('偶数です'),
+              );
+            });
+      } else {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return const AlertDialog(
+                title: Text('奇数です'),
+              );
+            });
+      }
+    }));
+
     // generaterバージョン
     // final counter = ref.watch(counter2Provider);
     // final counterNotifier = ref.watch(counter2Provider.notifier);
