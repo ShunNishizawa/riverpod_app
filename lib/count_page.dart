@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_app/Providers/counter_provider.dart';
 import 'package:riverpod_app/Providers/counter_provider2.dart';
+import 'package:riverpod_app/Providers/themeSelectorProvider/theme_selector_provider2.dart';
+import 'package:riverpod_app/Providers/theme_selector_provider.dart';
 
 class CountPage extends ConsumerWidget {
   const CountPage({super.key, required this.title});
@@ -13,6 +15,10 @@ class CountPage extends ConsumerWidget {
     // 従来のRiverpodのやり方
     final counter = ref.watch(countProvider);
     final counterNotifier = ref.watch(countProvider.notifier);
+    // 従来のやり方
+    // final themeSelectorNotifier = ref.watch(themeSelectorProvider.notifier);
+    // ジェネレータバージョン
+    final themeSelectorNotifier = ref.watch(themeSelector2Provider.notifier);
 
     ref.listen<int>(countProvider, ((previous, next) {
       if (next.isEven) {
@@ -40,7 +46,6 @@ class CountPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
       ),
       body: Center(
@@ -56,8 +61,20 @@ class CountPage extends ConsumerWidget {
             ),
             MaterialButton(
               onPressed: () => counterNotifier.reset(),
-              child: Text('リセット'),
-            )
+              child: Text(
+                'リセット',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ),
+            TextButton(
+                onPressed: () => themeSelectorNotifier.change(ThemeMode.light),
+                child: const Text('ライトモード')),
+            TextButton(
+                onPressed: () => themeSelectorNotifier.change(ThemeMode.dark),
+                child: const Text('ダークモード')),
+            TextButton(
+                onPressed: () => themeSelectorNotifier.change(ThemeMode.system),
+                child: const Text('システムに合わせる'))
           ],
         ),
       ),
