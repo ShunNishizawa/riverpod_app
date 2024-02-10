@@ -28,7 +28,7 @@ jobs:
           p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
 
       - name: install flutter
-        uses: subosito/flutter-action@v1
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.16.5"
           channel: "stable"
@@ -40,7 +40,7 @@ jobs:
         run: flutter build ios --release --no-codesign
 
       - name: iOS Build Action
-        uses: yukiarrr/ios-build-action@v0.5.0
+        uses: action/ios-build-action@v0.5.0
         with:
           project-path: ios/Runner.xcodeproj
           p12-base64: ${{ secrets.CERTIFICATES_P12 }}
