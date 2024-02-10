@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_app/Providers/themeSelectorProvider/theme_selector_provider2.dart';
-import 'package:riverpod_app/Providers/theme_selector_provider.dart';
 import 'package:riverpod_app/count_page.dart';
 import 'package:riverpod_app/themes/theme_data.dart';
 

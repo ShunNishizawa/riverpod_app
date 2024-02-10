@@ -74,7 +74,7 @@ class CountPage extends ConsumerWidget {
                 child: const Text('ダークモード')),
             TextButton(
                 onPressed: () => themeSelectorNotifier.change(ThemeMode.system),
-                child: const Text('システムに合わせる'))
+                child: const Text('システムに合わせる')),
           ],
         ),
       ),
